@@ -12,33 +12,33 @@
 
 - Cài đặt nginx trên ubuntu: 
 
-    ``sudo apt update && sudo apt install nginx``
+        sudo apt update && sudo apt install nginx
 
-    ``nginx -v`` # để kiểm tra cài đặt nginx thành công
+        nginx -v # để kiểm tra cài đặt nginx thành công
 
 - Tạo một self-signed certificate (chứng chỉ tự ký)
 
-    ``sudo mkdir /etc/nginx/ssl`` # Tạo thư mục lưu chữ ký
+        sudo mkdir /etc/nginx/ssl # Tạo thư mục lưu chữ ký
 
-    ``sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/selfsigned.key -out /etc/nginx/ssl/selfsigned.crt`` # sử dụng openssl để tạo chứng chỉ và khóa private
+        sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/selfsigned.key -out /etc/nginx/ssl/selfsigned.crt # sử dụng openssl để tạo chứng chỉ và khóa private
 
 **Tại phần Common Name (CN), nhập địa chỉ của web server (địa chỉ của Ubuntu, vd: 192.168.1.2)**
 
-    ``sudo openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048``
+        sudo openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 
 - Cấu hình nginx để sử dụng https:
 
-    ``sudo nano /etc/nginx/sites-available/default`` # chỉnh sửa file cài đặt của nginx
+        sudo nano /etc/nginx/sites-available/default # chỉnh sửa file cài đặt của nginx
 
 - Chỉnh sửa file cấu hình để nginx sử dụng chứng chỉ SSL tự ký ở trên, thay thế nội dung cũ bằng nội dung file [default](./config/default)
 
 - Test file cấu hình và restart nginx
 
-    ``sudo nginx -t`` # Kiểm tra file cấu hình, hiển thị successful có nghĩa là thành công
+        sudo nginx -t # Kiểm tra file cấu hình, hiển thị successful có nghĩa là thành công
 
-    ``sudo service nginx restart`` # restart nginx
+        sudo service nginx restart # restart nginx
 
-    ``netstat -tlnp | grep 443`` # Nếu có kết quả, https đã được triển khai thành công 
+        netstat -tlnp | grep 443 # Nếu có kết quả, https đã được triển khai thành công 
 
 - Truy cập vào trang web
 
@@ -56,7 +56,7 @@
 
 - Stop nginx
 
-    ``sudo systemctl stop nginx``
+        sudo systemctl stop nginx
 
 - Cài đặt caddy trên ubuntu, sử dụng file cài đặt sau [setup](./config/install_caddy.sh)
 
